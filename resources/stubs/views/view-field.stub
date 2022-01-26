@@ -1,0 +1,4 @@
+            <div class="mb-2">
+                <h5>{{title}}</h5>
+                {{ ${{modelNameLowerCase}}->{{column}} }}
+            </div>

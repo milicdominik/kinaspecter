@@ -1,0 +1,122 @@
+.logotop{
+  height:15vh;
+  background-image:url('/res/img/medri_logo_inverse.png');
+  background-size:contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  max-width: 400px;
+
+}
+@media(max-width: 768px) {
+    .logotop {
+      margin:auto
+    }
+}
+
+.login-card.card {
+    max-width: 350px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2);
+}
+
+.input-group {
+    position: relative;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    width: 100%;
+}
+
+.login-card input.form-control:invalid:focus {
+    border-color:transparent;
+    -webkit-box-shadow: none;
+  	-moz-box-shadow: none;
+  	box-shadow: none;
+}
+
+.login-card input.form-control:invalid:focus .login-input-group-text {
+    border-bottom: 1px solid red;
+}
+
+.login-card .input-group .form-control {
+    background-color: transparent;
+    border-color:transparent;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.login-input-group-text {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    /* padding: .375rem .75rem; */
+    padding: .375rem 0;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    text-align: center;
+    white-space: nowrap;
+    width: 100%;
+    border-bottom: 1px #cccccc solid;
+}
+
+.login-card .password-reset-link {
+    text-align: right;
+}
+
+.login-card .password-reset-link a {
+    color: #808080;
+}
+
+.login-card .btn.btn-success,
+.login-card .btn.btn-primary {
+    padding: .7rem .45rem;
+    width: 100%;
+    box-shadow: 1px 3px 5px -3px rgba(0,0,0,0.50);
+    -webkit-box-shadow: 1px 3px 5px -3px rgba(0,0,0,0.50);
+    -moz-box-shadow: 1px 3px 5px -3px rgba(0,0,0,0.50);
+}
+
+.middleline h4 {
+   width: 100%;
+   text-align: center;
+   border-bottom: 1px solid #ccc;
+   line-height: 0.1em;
+   margin: 10px 0 20px;
+}
+
+.middleline h4 span {
+    background:#fff;
+    padding:0 10px;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.login-card .form-check-input {
+    height: 1.45em;
+    width: 2.45em;
+}
+
+.login-card .form-check-label {
+    padding-left: 10px;
+    line-height: 1.9;
+}
+
+.login-card .card-image img {
+    width: 100%;
+    height: auto;
+}

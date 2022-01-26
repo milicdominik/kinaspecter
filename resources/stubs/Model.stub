@@ -1,0 +1,43 @@
+<?php
+
+namespace {{modelNamespace}};
+
+use App\Override\NetComModel;
+use Kyslik\ColumnSortable\Sortable;
+use App\Traits\DeletecheckTrait;
+//use App\Traits\NetComLogsActivity;
+{{softDeletesNamespace}}
+
+class {{modelName}} extends NetComModel
+{
+  use Sortable;
+  use DeletecheckTrait;
+  //use NetComLogsActivity;
+  {{softDeletes}}
+
+  protected $table = '{{tableName}}';
+
+  public $timestamps = true;
+
+  static $rules = [{{rules}}
+  ];
+
+  /**
+   * The attributes that should be cast to native types.
+   *
+   * @var array
+   */
+  protected $casts = [
+      //'is_field' => 'boolean',
+  ];
+
+  /**
+   * Attributes that should be mass-assignable.
+   *
+   * @var array
+   */
+  protected $fillable = [{{fillable}}];
+
+{{relations}}
+
+}

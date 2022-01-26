@@ -1,0 +1,148 @@
+<?php
+
+namespace {{controllerNamespace}};
+
+use {{modelNamespace}}\{{modelName}};
+use Illuminate\Http\Request;
+
+/**
+ * Class {{modelName}}Controller
+ * @package App\Http\Controllers
+ */
+class {{modelName}}Controller extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+      $user = auth()->user();
+      if(!$user) abort(403);
+      if(!$user->canmodel('access','{{modelName}}')) abort(403);
+
+      $limit = 50;
+
+      ${{modelNamePluralLowerCase}} = new {{modelName}};
+
+      ${{modelNamePluralLowerCase}} = ${{modelNamePluralLowerCase}}->sortable(['id' => 'asc'])->paginate($limit)->appends($request->except('page'));
+
+      return view('{{modelView}}.index', compact('{{modelNamePluralLowerCase}}'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+      $user = auth()->user();
+      if(!$user) abort(403);
+      if(!$user->canmodel('create','{{modelName}}')) abort(403);
+
+      ${{modelNameLowerCase}} = new {{modelName}};
+      return view('{{modelView}}.create', compact('{{modelNameLowerCase}}'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+      $user = auth()->user();
+      if(!$user) abort(403);
+      if(!$user->canmodel('create','{{modelName}}')) abort(403);
+
+      $request->validate({{modelName}}::$rules);
+
+      ${{modelNameLowerCase}} = {{modelName}}::create($request->all());
+
+      return redirect()->route('{{modelRoute}}.show',${{modelNameLowerCase}}->id)->with('success', 'Uspješno kreirano');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+      $user = auth()->user();
+      if(!$user) abort(403);
+
+      ${{modelNameLowerCase}} = {{modelName}}::findOrFail($id);
+
+      if(!$user->canmodel('view','{{modelName}}',${{modelNameLowerCase}})) abort(403);
+
+      return view('{{modelView}}.show', compact('{{modelNameLowerCase}}'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+      $user = auth()->user();
+      if(!$user) abort(403);
+
+      ${{modelNameLowerCase}} = {{modelName}}::findOrFail($id);
+
+      if(!$user->canmodel('edit','{{modelName}}',${{modelNameLowerCase}})) abort(403);
+
+      return view('{{modelView}}.edit', compact('{{modelNameLowerCase}}'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  {{modelName}} ${{modelNameLowerCase}}
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, {{modelName}} ${{modelNameLowerCase}})
+    {
+      $user = auth()->user();
+      if(!$user) abort(403);
+      if(!$user->canmodel('edit','{{modelName}}',${{modelNameLowerCase}})) abort(403);
+
+      $request->validate({{modelName}}::$rules);
+
+      ${{modelNameLowerCase}}->update($request->all());
+
+      return redirect()->route('{{modelRoute}}.index')->with('success', 'Ažurirano');
+    }
+
+    /**
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function destroy($id)
+    {
+      $user = auth()->user();
+      if(!$user) abort(403);
+
+      ${{modelNameLowerCase}} = {{modelName}}::findOrFail($id);
+
+      if(!$user->canmodel('edit','{{modelName}}',${{modelNameLowerCase}})) abort(403);
+
+      $deletecheck = ${{modelNameLowerCase}}->deletecheck();
+      if(!$deletecheck['can'])
+      {
+        return redirect()->route('{{modelRoute}}.index')->with('error', $deletecheck['message']);
+      }
+
+      ${{modelNameLowerCase}}->delete();
+
+      return redirect()->route('{{modelRoute}}.index')->with('success', 'Obrisano');
+    }
+}

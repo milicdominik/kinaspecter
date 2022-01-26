@@ -1,0 +1,405 @@
+.wrapper::before {
+    z-index: -1
+}
+
+.btn-group-sm>.btn,
+.btn-sm {
+    line-height: .9rem;
+    padding: .2rem .3rem;
+    border-radius: .3rem;
+}
+
+.list-group-sm .list-group-item {
+    padding: .25rem .75rem
+}
+
+.hidden {
+    display: none !important;
+}
+
+.badge {
+    padding-bottom: .45em;
+    padding-top: .25em;
+}
+
+.sw-theme-default .toolbar>.btn.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.apilink {
+    position: relative;
+}
+
+.apilink span.loader {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.form-select.form-control-sm {
+    padding: 0 1.2rem 0rem .4rem;
+    background-position: right .2rem center
+}
+
+
+/*praznici na kalendaru boja teksta*/
+
+.fc .fc-bg-event {
+    opacity: .6
+}
+
+.fc .fc-bg-event .fc-event-title {
+    color: #000
+}
+
+.bg-info {
+    background-color: #20a9c9 !important;
+}
+
+table.table.table-borderless td {
+    padding: 0
+}
+
+
+/*ckeditor5 fixes*/
+
+figure.table {
+    width: inherit
+}
+
+
+/*fadeout text effect*/
+
+.fadeout-e {
+    display: block;
+    overflow: hidden;
+}
+
+.fadeout-e::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    pointer-events: none;
+    background-image: url('/res/img/bg_grad_white_bottom.png');
+    background-position: bottom;
+    background-repeat: repeat-x;
+    display: block;
+}
+
+.toast-container {
+    z-index: 1100
+}
+
+.user-avatar {
+    background-size: cover;
+}
+
+
+/* Form input coloring */
+
+input.form-control:valid:focus {
+    border: solid 1px green;
+}
+
+input.form-control:invalid:focus {
+    border: solid 1px red;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(235, 103, 103, 1);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(235, 103, 103, 1);
+    box-shadow: 0px 0px 3px 0px rgba(235, 103, 103, 1);
+}
+
+.form-control[required][disabled],
+.form-control[readonly],
+fieldset[required][disabled] .form-control {
+    background-color: #eee;
+    opacity: 1;
+    border-color: #d2d6de;
+    color: #a7a7a7;
+}
+
+input.form-control[required],
+textarea.form-control[required] {
+    background-color: #fffef7;
+    background-image: url('/res/img/field-asterisk.png');
+    background-repeat: no-repeat;
+    background-position: right top;
+    border-color: #e3da9f;
+}
+
+input.form-control[required]::placeholder,
+textarea.form-control[required]::placeholder,
+input.form-control[required]:-ms-input-placeholder,
+textarea.form-control[required]:-ms-input-placeholder,
+input.form-control[required]::-ms-input-placeholder,
+textarea.form-control[required]::-ms-input-placeholder {
+    color: #9a904f;
+    opacity: 1;
+    /* Firefox */
+}
+
+input:required:valid,
+textarea:required:valid {
+    /* when a field is considered valid by the browser */
+    background-color: white;
+    border-color: #d2d6de
+}
+
+
+/* Form input coloring end */
+
+.profile-user-img {
+    border: 3px solid #fff;
+    background-color: #eee;
+    margin: 0 auto;
+    /*padding: 3px;*/
+    width: 100px;
+}
+
+.avatar {
+    background-size: cover;
+    background-position: center
+}
+
+.user {
+    position: relative;
+}
+
+.user-inline {
+    height: 1em
+}
+
+.user-inline .avatar {
+    height: 1.5em;
+    width: 1.5em;
+    position: absolute;
+    left: 0;
+    top: .05em;
+    background-color: #eee
+}
+
+.user-inline .avatar:hover {
+    z-index: 100;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+}
+
+.user-inline .user-name {
+    margin-left: 2em
+}
+
+
+/* zoom (for avatars) */
+
+.zoom {
+    transition: transform .2s;
+    /* Animation */
+}
+
+.zoom:hover {
+    transform: scale(3);
+}
+
+.zoom-sm:hover {
+    transform: scale(1.3);
+}
+
+.modal-geo {
+    max-width: 200px;
+    margin: auto;
+}
+
+.modal-geo .modal-geo-icon {
+    position: absolute;
+    width: 180px;
+    height: 100%;
+    line-height: 180px;
+    text-align: center;
+    font-size: 3em;
+    color: #ccc;
+}
+
+.modal-geo .modal-geo-icon.active {
+    color: #007ecc
+}
+
+.modal-geo .modal-geo-icon.error {
+    color: red
+}
+
+.modal-geo .modal-geo-icon.success {
+    color: green
+}
+
+
+/* circleprogress style */
+
+.circle-progress-value {
+    stroke-width: 6px;
+    stroke: hsl(203, 100%, 40%);
+    stroke-dasharray: 0.6 3;
+}
+
+.circle-progress-circle {
+    stroke-width: 6px;
+    stroke: #ddd;
+    stroke-dasharray: 0.6 3;
+    stroke-dashoffset: 1.6;
+}
+
+.circle-progress-text {
+    fill: hsl(203, 100%, 40%);
+    font-size: 26px;
+}
+
+.circle-progress {
+    width: 150px;
+    height: auto;
+    margin: 15px
+}
+
+.relative {
+    position: relative
+}
+
+.dropdown-item.sortable-link+i {
+    position: absolute;
+    top: 10px;
+    right: 10px
+}
+
+
+/* NCX Kalendar */
+
+.ncxkalendar th,
+.ncxkalendar td {
+    text-align: center;
+}
+
+.ncxkalendar.table>tbody>tr>td {
+    vertical-align: top
+}
+
+.ncxkalendar td.day {
+    height: 3em
+}
+
+.ncxkalendar .event-dots {
+    font-size: .4em;
+    display: block;
+    color: #ccc
+}
+
+.ncxkalendar .event-dot {
+    margin: 0 1px
+}
+
+.ncxkalendar .event-dot-green {
+    color: #089908
+}
+
+.ncxkalendar td.day>a {
+    display: block;
+    color: #000;
+    height: 2.2em;
+    width: 3em;
+    margin: auto;
+    border: solid 1px transparent;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.ncxkalendar td.day>a:hover {
+    text-decoration: none;
+    background-color: #eee;
+}
+
+
+/* - background events colors and style */
+
+.ncxkalendar td.day.event-bg-today>a {
+    font-weight: 600;
+    border-color: #b1c9dd
+}
+
+.ncxkalendar td.day.event-bg-gray>a {
+    background-color: #eee
+}
+
+.ncxkalendar td.day.event-bg-green>a {
+    background-color: #deffe8
+}
+
+.satnica-is_past {}
+
+.satnica-is_current {
+    border-left: solid 4px green;
+}
+
+.satnica-is_future {
+    border-left: solid 4px orange;
+}
+
+.ozbiljnost {
+    border-left: solid 4px #eee;
+}
+
+.ozbiljnost-1 {
+    border-left-color: #f99
+}
+
+.ozbiljnost-2 {
+    border-left-color: orange
+}
+
+.ozbiljnost-3 {
+    border-left-color: #96d8ff
+}
+
+.uputa-naslov {
+    margin-bottom: 2rem;
+}
+
+.bg-success-light {
+    background-color: #d4edda !important;
+    border-color: #bfd5c4;
+    color: #000;
+}
+
+.bg-danger-light {
+    background-color: #f8d7da !important;
+    border-color: #dfc2c4;
+    color: #000;
+}
+
+.info-collapse-link h4 {
+    margin-bottom: 0;
+}
+
+.info-collapse-link:hover {
+    text-decoration: none;
+}
+
+.info-collapse-link[data-bs-toggle="collapse"]::before {
+    border: solid;
+    border-width: 0 .1rem .1rem 0;
+    content: " ";
+    display: inline-block;
+    padding: 2.5px;
+    position: absolute;
+    right: 1.25rem;
+    top: 1.2rem;
+    transform: rotate(-45deg);
+    transition: all .2s ease-out;
+    color: #203a45;
+}
+
+.info-collapse-link[aria-expanded="true"]::before,
+.info-collapse-link[data-bs-toggle="collapse"]:not(.collapsed)::before {
+    transform: rotate(45deg);
+}

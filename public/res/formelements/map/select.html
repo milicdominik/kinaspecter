@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Map select</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/res/lib/leafelt/leaflet.css" />
+  <script src="/res/lib/leafelt/leaflet.js"></script>
+  <style>
+  html,body{
+  font-size:12px;font-family:-apple-system, BlinkMacSystemFont,Helvetica Neue,Helvetica,Arial,sans-serif;height:100vh
+  }
+    #map{background:rgb(228, 230, 235)}
+    #map .mapunavailable{font-size:1em;color:#999;}#map .mapunavailable div{text-align:center;width:100%;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%)}
+    a.attributioninfobutton{
+    position:absolute;
+      bottom:10px;
+      left:10px;
+      display:block;
+      text-align:center;
+      text-decoration:none;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      z-index:500;
+    }
+    #attributioninfo{
+      background:white;
+      position:absolute;
+      bottom:40px;
+      left:10px;
+      z-index:501;
+      padding:5px;
+      -webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+pointer-events:none;
+visibility:hidden;
+    }
+    #attributioninfo.attributioninfo-show{visibility:visible;pointer-events:all;}
+
+    </style>
+</head>
+<body style="padding:0;margin:0;height:100vh;width:100%">
+<a href="#" onclick="return  zzpainfo();" class="attributioninfobutton"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path style="fill:gray" d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2.033 16.01c.564-1.789 1.632-3.932 1.821-4.474.273-.787-.211-1.136-1.74.209l-.34-.64c1.744-1.897 5.335-2.326 4.113.613-.763 1.835-1.309 3.074-1.621 4.03-.455 1.393.694.828 1.819-.211.153.25.203.331.356.619-2.498 2.378-5.271 2.588-4.408-.146zm4.742-8.169c-.532.453-1.32.443-1.761-.022-.441-.465-.367-1.208.164-1.661.532-.453 1.32-.442 1.761.022.439.466.367 1.209-.164 1.661z"/></svg></a>
+<div id="attributioninfo">
+Map data &copy; <a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank">CC-BY-SA</a>
+</div>
+<div id="map" style="width: 100%; height: 100%"></div>
+<script>
+  function zzpainfo(){
+    var el = document.getElementById('attributioninfo');
+    el.classList.toggle("attributioninfo-show");
+    return false;
+  }
+  function zzp(p) {
+      var result = null,
+          tmp = [];
+      window.location.hash.substr(1).split("&").forEach(function (item) {
+            tmp = item.split("=");
+            if (tmp[0] === p) result = decodeURIComponent(tmp[1]);
+          });
+      return result;
+  }
+  var lat = zzp('lat');
+  var lng = zzp('lng');
+	var id = zzp('id');
+
+  if(!lat || !lng)
+  {
+    lat = 0;
+    lng = 0;
+    //var mapel = document.getElementById('map')
+    //mapel.innerHTML += '<div class="mapunavailable"><div>Map is unavailable.</div></div>';
+  }
+  var map = L.map('map',{zoomControl: false,attributionControl: false}).setView([lat,lng], 18);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+      maxZoom: 19
+    }).addTo(map);
+    var i = L.icon({
+        iconUrl: '/res/lib/leafelt/images/marker-icon-2x.png',
+        shadowUrl: '/res/lib/leafelt/images/marker-shadow.png',
+				iconSize:     [25, 41],
+				iconAnchor:   [12, 41]
+    });
+    var m = L.marker([lat, lng],{
+    draggable: true,icon:i
+    }).addTo(map);
+		console.log(m);
+		if(id)
+		{
+	    m.on('dragend', function (e) {
+				window.parent.postMessage({id:id,lat:m.getLatLng().lat,lng:m.getLatLng().lng})
+	    });
+		}
+</script>
+</body>
+</html>
